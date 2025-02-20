@@ -1,5 +1,6 @@
 package com.github.ibm.mapepire.requests;
 
+import java.math.BigInteger;
 import java.sql.CallableStatement;
 import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
@@ -132,6 +133,8 @@ public abstract class BlockRetrievableRequest extends ClientRequest {
                     cellDataForResponse = null;
                 } else if (cellData instanceof CharSequence) {
                     cellDataForResponse = cellData.toString().replaceAll("\\s+$","");
+                } else if (cellData instanceof BigInteger) {
+                    cellDataForResponse = ((BigInteger) cellData).toString();
                 } else if (cellData instanceof Number || cellData instanceof Boolean) {
                     cellDataForResponse = cellData;
                 } else {
